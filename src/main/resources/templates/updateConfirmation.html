@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hotel Reservation | Updated Confirmation</title>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+	<nav class="navbar navbar-dark bg-dark" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/hotelReservation">Hotel Reservations</a>
+			</div>
+			<div>
+				<span class="navbar-text">
+				Welcome,<span th:text="${customerInfo.firstName}"></span> <span th:text="${customerInfo.lastName}"></span>!
+				</span>
+			</div>
+		</div>
+	</nav>
+</div>
+
+<div class="container">
+	<h2>Updated Reservation Confirmation</h2>
+	<table class="table table-striped">
+
+		<tbody>
+		<tr>
+			<td>Reservation ID</td>
+			<td><span th:text="${reservation.resID}"></span></td>
+		</tr>
+		<tr>
+			<td>Name</td>
+			<td><span th:text="${customer.firstName}"></span> <span th:text="${customer.lastName}"></span></td>
+		</tr>
+		<tr>
+			<td>Hotel</td>
+			<td><span th:text="${hotel.name}"></span></td>
+		</tr>
+		<tr>
+			<td>City</td>
+			<td><span th:text="${hotel.city}"></span></td>
+		</tr>
+		<tr>
+			<td>Check-In Date</td>
+			<td><span th:text="${reservation.checkIn}"></span>	</td>
+		</tr>
+		<tr>
+			<td>Check-Out Date</td>
+			<td><span th:text="${reservation.checkOut}"></span></td>
+		</tr>
+		<tr>
+			<td>Number of Standard Room</td>
+			<td><span th:text="${reservation.numStandardRoom}"></span></td>
+		</tr>
+		<tr>
+			<td>Number of of Intermediate Room</td>
+			<td><span th:text="${reservation.numIntermediateRoom}"></span></td>
+		</tr>
+		<tr>
+			<td>Number of of Luxury Room</td>
+			<td><span th:text="${reservation.numLuxuryRoom}"></span></td>
+		</tr>
+		<tr>
+			<td>Price of Standard Room</td>
+			<td>$<span th:text="${reservation.priceStandardRoom}"></span></td>
+		</tr>
+		<tr>
+			<td>Price of Intermediate Room</td>
+			<td>$<span th:text="${reservation.priceIntermediateRoom}"></span></td>
+		</tr>
+		<tr>
+			<td>Price of Luxury Room</td>
+			<td>$<span th:text="${reservation.priceLuxuryRoom}"></span></td>
+		</tr>
+		<tr>
+			<td>Number of Nights</td>
+			<td><span th:text="${reservation.numDays}"></span></td>
+		</tr>
+		<tr>
+			<td>Total Price</td>
+			<td>$<span th:text="${reservation.totalPrice}"></span></td>
+		</tr>
+		</tbody>
+	</table>
+	<a class="btn btn-primary align-content-center" href="/hotelReservation/findReservation" role="button">Search Reservation</a>
+</div>
+</body>
+</html>
+

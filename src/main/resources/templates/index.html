@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hotel Reservations | HOME</title>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="container">
+	<nav class="navbar navbar-dark bg-dark" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/hotelReservation">Hotel Reservations</a>
+			</div>
+		</div>
+	</nav>
+</div>
+
+<div class="container">
+	<div class="jumbotron">
+		<h1 class="display-3">Hotel Reservations</h1>
+		<p class="lead">This is a hotel reservation website where you can find your favorite hotel and room.</p>
+		<hr class="my-4">
+		<p>Go reservation and enjoy your journey!</p>
+		<p class="lead">
+			<a class="btn btn-primary btn-lg" href="/hotelReservation/customerInfoForm" role="button">Go Reservation</a>
+			<a class="btn btn-primary btn-lg" href="/hotelReservation/findReservation" role="button">Search My Reservation</a>
+		</p>
+	</div>
+</div>
+
+</body>
+</html>
+

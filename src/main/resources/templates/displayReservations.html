@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hotel Reservations | Reservations</title>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+	<nav class="navbar navbar-dark bg-dark" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/hotelReservation">Hotel Reservations</a>
+			</div>
+		</div>
+	</nav>
+</div>
+	<div class="container">
+		<h2>Reservation List</h2>
+		<table class="table table-sm">
+			<thead class="thead-light">
+			<tr>
+				<th>Reservation ID</th>
+				<th>Hotel Name</th>
+				<th>Hotel Address</th>
+				<th>Check In</th>
+				<th>Check Out</th>
+				<th>Standard Room </th>
+				<th>Intermediate Room</th>
+				<th>Luxury Room</th>
+				<th>Total Price</th>
+				<th>Cancelled</th>
+				<th>Past Date</th>
+				<th>Options</th>
+			</tr>
+			</thead>
+			<tbody class="table-hover">
+			<tr th:each="reservation : ${reservations}">
+				<td><span th:text="${reservation.resID}"></span> </td>
+				<td><span th:text="${reservation.hotelName}"></span></td>
+				<td><span th:text="${reservation.address}"></span></td>
+				<td><span th:text="${reservation.checkIn}"></span></td>
+				<td><span th:text="${reservation.checkOut}"></span></td>
+				<td> <span th:text="${reservation.numStandardRoom}"></span> </td>
+				<td><span th:text="${reservation.numIntermediateRoom}"></span></td>
+				<td><span th:text="${reservation.numLuxuryRoom}"></span></td>
+				<td>$<span th:text="${reservation.totalPrice}"></span></td>
+				<td th:switch="${reservation.cancelled}">
+					<span th:case="0"> No </span>
+					<span th:case="1"> Yes </span>
+				</td>
+				<td th:switch="${reservation.isReservationPassed(reservation.checkOut)}">
+					<span th:case="true"> Yes </span>
+					<span th:case="false"> No </span>
+				</td>
+				<span th:switch="${reservation.cancelled}">
+				<!-- If reservation was not cancelled, check if checkOut date has passed.  -->
+				
+				<td th:case="0">
+					<span th:switch="${reservation.isReservationPassed(reservation.checkOut)}">
+						<div th:case="false">
+						<!-- Reservation was not cancelled or passed date. Display two buttons -->
+							<div class="container">
+								<form action="#" th:action="@{/hotelReservation/cancelOrUpdate}" method="post">
+								<input type="hidden" name="resID" th:value="${reservation.resID}"/>
+								<input type="hidden" name="action" value="Update"/>
+								<button class="btn btn-outline-primary btn-sm" type="submit">Update</button>
+								</form>
+
+								<form action="#" th:action="@{/hotelReservation/cancelOrUpdate}" method="post">
+									<input type="hidden" name="resID" th:value="${reservation.resID}"/>
+									<input type="hidden" name="action" value="Cancel"/>
+									<button class="btn btn-outline-primary btn-sm" type="submit">Cancel</button>
+								</form>
+							</div>
+						</div>
+						<div th:case="true">
+						<!-- If checkout date is passed(true) show No Action Available -->
+								<div class="container">
+									<span class="badge badge-pill badge-secondary">No Action Available</span>
+								</div>
+						</div>
+						
+					</span>
+				</td>
+				<td th:case="1">
+				<!-- If the reservation is cancelled,then show No Action Available -->
+						<div class="container">
+							<span class="badge badge-pill badge-secondary">No Action Available</span>
+						</div>
+				</td>
+				</span>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>
+
